@@ -1,0 +1,54 @@
+Exercise: Anomaly Detection in Network Traffic
+Objective
+You are working in a cybersecurity team and need to detect unusual network activity that could indicate a cyber attack. Your goal is to use unsupervised anomaly detection techniques to identify suspicious patterns in network traffic.
+
+Dataset
+Use the KDD Cup 99 dataset (or generate synthetic data) with features such as:
+
+Duration (length of the connection)
+
+Protocol Type (TCP, UDP, ICMP)
+
+Service (HTTP, FTP, etc.)
+
+Bytes Sent/Received
+
+Connection Count (number of connections to the same destination in a short period)
+
+You can download a similar dataset from Kaggle or create synthetic data.
+
+Tasks
+Load and Explore the Data
+
+Load the dataset using Pandas.
+
+Perform exploratory data analysis (EDA) using visualization (histograms, box plots, etc.).
+
+Preprocess the Data
+
+Convert categorical features (e.g., Protocol Type) into numerical values.
+Apply Clustering and Anomaly Detection
+K-Means Clustering:
+
+Use the Elbow Method to find the optimal number of clusters.
+
+Train K-Means and visualize clusters.
+
+Agglomerative Clustering:
+
+Try different linkage methods (ward, complete, average).
+
+Use a scatterplot to determine the number of clusters.
+
+KNN for Anomaly Detection:
+
+Compute the distance to k-nearest neighbors and mark outliers (high distances).
+
+Set a threshold to classify normal vs. anomalous traffic.
+
+Visualize and Analyze Results
+Plot network traffic data colored by clusters.
+
+Compare cluster distributions across K-Means and Agglomerative Clustering.
+
+Evaluate anomalies using KNN by analyzing data points with unusually high distances
