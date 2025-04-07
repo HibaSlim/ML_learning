@@ -30,11 +30,30 @@ df.drop_duplicates(inplace=True)
 
 #Handle outliers, if they exist
 # Visualize outliers using boxplots
-plt.figure(figsize=(10, 5))
+plt.figure(figsize=(9, 5))
 sns.boxplot(data=df)
-plt.show()
+plt.title("Box Plot using Seaborn")
+plt.ylabel("Values")
+plt.savefig('boxplot.png')
+Q1 = df['Energy'].quantile(0.25)
+Q3 = df['Energy'].quantile(0.75)
+IQR = Q3 - Q1
+lower_bound = Q1 - 1.5 * IQR
+upper_bound = Q3 + 1.5 * IQR
+# Remove outliers
+filtered_df = df[(df['Energy'] >= lower_bound) & (df['Energy'] <= upper_bound)]
+# Visualize filtered data
+plt.boxplot(filtered_df['Energy'])
+plt.savefig('boxplot_filtered.png')
+#trying the z_scores
 z_scores = np.abs(stats.zscore(df.select_dtypes(include=[np.number])))
 df = df[(z_scores < 3).all(axis=1)]
+plt.figure(figsize=(9, 5))
+sns.boxplot(data=df)
+plt.title("Box Plot filtered")
+plt.ylabel("Values")
+plt.savefig('boxplot_filtered_.png')
+
 print(df.info())
 
 # Encode categorical features
