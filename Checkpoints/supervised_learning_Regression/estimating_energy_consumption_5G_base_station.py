@@ -12,13 +12,13 @@ from scipy import stats
 #load data
 df= pd.read_csv('5G_energy_consumption_dataset.csv')
 #basic data exploration
-"""print(df.head())
+print(df.head())
 print(df.describe())
 print(df.info())
 
 # Create a profile report using pandas profiling
 profile = ProfileReport(df, title="5G energy consumption", explorative=True)
-profile.to_file("5G_energy_consumption.html")"""
+profile.to_file("5G_energy_consumption.html")
 
 #to check missing values we use
 missing_values = df.isnull().sum()
@@ -82,7 +82,7 @@ df['BS'] = label_encoder.fit_transform(df['BS'])
 
 print(df.info())
 print(df.head())
-"""
+
 #2-Select your target variable and the features
 target = 'TXpower'
 features = df.drop(columns=[target])
@@ -162,4 +162,4 @@ results = {
 }
 results_df = pd.DataFrame(results)
 print('\nthe results for each method are:\n',results_df)
-print('\nBased on the evaluation metrics the multiple model is the best performing model as it has the lowest MSE,MAE, RMSE,the highest r2')"""
+print('\nBased on the evaluation metrics the multiple model is the best performing model as it has the lowest MSE,MAE, RMSE,the highest r2')
