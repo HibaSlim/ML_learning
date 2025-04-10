@@ -12,13 +12,13 @@ from scipy import stats
 #load data
 df= pd.read_csv('5G_energy_consumption_dataset.csv')
 #basic data exploration
-print(df.head())
+"""print(df.head())
 print(df.describe())
 print(df.info())
 
 # Create a profile report using pandas profiling
 profile = ProfileReport(df, title="5G energy consumption", explorative=True)
-profile.to_file("5G_energy_consumption.html")
+profile.to_file("5G_energy_consumption.html")"""
 
 #to check missing values we use
 missing_values = df.isnull().sum()
@@ -50,9 +50,9 @@ z_scores = np.abs(stats.zscore(df.select_dtypes(include=[np.number])))
 df = df[(z_scores < 3).all(axis=1)]
 plt.figure(figsize=(9, 5))
 sns.boxplot(data=df)
-plt.title("Box Plot filtered")
+plt.title("Box Plot filtered_with_zscores")
 plt.ylabel("Values")
-plt.savefig('boxplot_filtered_.png')
+plt.savefig('boxplot_filtered_with_zscores.png')
 
 print(df.info())
 
@@ -68,7 +68,7 @@ df['Time'] = pd.to_datetime(df['Time'])
 df['year'] = df['Time'].dt.year
 df['month'] = df['Time'].dt.month
 df['day'] = df['Time'].dt.day
-df['hour'] = df['Time'].dt.hour
+
 
 # now we drop the original column
 df.drop(columns=['Time'], inplace=True)
@@ -82,6 +82,7 @@ df['BS'] = label_encoder.fit_transform(df['BS'])
 
 print(df.info())
 print(df.head())
+"""
 #2-Select your target variable and the features
 target = 'TXpower'
 features = df.drop(columns=[target])
@@ -93,24 +94,10 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_
 
 #4-Based on your data exploration phase select a ML regression algorithm and train it on the training set
 #we will try all the options
-model = LinearRegression()
-model.fit(x_train, y_train)
-
-#5-assess the performance of our model
-y_pred = model.predict(x_test)
-mse = mean_squared_error(y_test, y_pred)
-r2 = r2_score(y_test, y_pred)
-mae = mean_absolute_error(y_test,y_pred)
-rmse = root_mean_squared_error(y_pred, y_test)
-
-print(f'Mae : {mae:.2f}')
-print(f'Mse : {mse:.2f}')
-print(f'Rmse : {rmse:.2f}')
-print(f'r2 : {r2:.2f}')
 
 multiple_model = LinearRegression()
 multiple_model.fit(x_train,y_train)
-
+#5-assess the performance of our model
 y_pred = multiple_model.predict(x_test)
 
 mae_m = mean_absolute_error(y_test,y_pred)
@@ -167,12 +154,12 @@ print(f'r2  Elastic: {r2_E:.2f}')
 
 #for better visualisation and analysis i will show the above results in a dataframe
 results = {
-    'Regression_Model': ['Simple','Multiple', 'Ridge', 'Lasso', 'Elastic'],
-    'MAE': [mae,mae_m,mae_r, mae_l, mae_E],
-    'MSE': [mse, mse_m,mse_r,mse_l, mse_E],
-    'RMSE': [rmse, rmse_m,rmse_r,rmse_l, rmse_E],
-    'R²': [r2,r2_m,r2_r,r2_l, r2_E]
+    'Regression_Model': ['Multiple', 'Ridge', 'Lasso', 'Elastic'],
+    'MAE': [mae_m,mae_r, mae_l, mae_E],
+    'MSE': [mse_m,mse_r,mse_l, mse_E],
+    'RMSE': [rmse_m,rmse_r,rmse_l, rmse_E],
+    'R²': [r2_m,r2_r,r2_l, r2_E]
 }
 results_df = pd.DataFrame(results)
-print('\nthe results are:\n',results_df)
-print('\nBased on the evaluation metrics the multiple model is the best performing model as it has the lowest MSE,MAE, RMSE,the highest r2')
+print('\nthe results for each method are:\n',results_df)
+print('\nBased on the evaluation metrics the multiple model is the best performing model as it has the lowest MSE,MAE, RMSE,the highest r2')"""
