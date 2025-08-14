@@ -7,5 +7,8 @@
 /.idea
 /.venv1
 /Checkpoints/supervised_learning_Classification/African_crises_dataset.csv
+/Checkpoints/unsupervised_learning_clustering/Credit_card_dataset.csv
+/Checkpoints/Unsupervised_Association_Rules/Market_Basket_Optimisation.csv
+
 
 
